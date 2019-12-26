@@ -1,3 +1,6 @@
 [submodule "components/mruby_component/mruby"]
 	path = components/mruby_component/mruby
 	url = https://github.com/mruby/mruby.git
+[submodule "components/M5StickC"]
+	path = components/M5StickC
+	url = https://github.com/m5stack/M5StickC.git
