@@ -56,4 +56,8 @@ MRuby::CrossBuild.new('esp32') do |conf|
 
   conf.gem :core => "mruby-print"
   conf.gem :core => "mruby-compiler"
+
+  conf.gem :git => 'https://github.com/mimaki/mruby-stdio'
+  conf.gem :git => "https://github.com/fcheung/mruby-stdio-m5stick.git"
+
 end
