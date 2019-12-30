@@ -28,10 +28,10 @@ extern "C" {
 
 #undef ENABLE_READLINE
 #define ENTER '\r'
-#define PRINTF(...) M5.Lcd.printf(__VA_ARGS__)
-#define FPUTS(s, _o) M5.Lcd.printf(s)
-#define PUTC(c, _o) M5.Lcd.printf("%c", c)
-#define FWRITE(s, l, _n, _o) for (size_t _p=0; _p<(size_t)l; _p++) { PUTC(s[_p], _o); }
+#define PRINTF(...) printf(__VA_ARGS__)
+#define FPUTS(s, _o) fputs(s,_o)
+#define PUTC(c, _o) putc(c, _o)
+#define FWRITE(s, l, _n, _o)  fwrite(s,l,_n,_o)
 
 int GETCHAR(void)
 {
@@ -41,9 +41,8 @@ int GETCHAR(void)
     if (c >= 0) break;
   }
   if (c >= ' ') {
-    char buf[2] = {0, 0};
-    buf[0] = c;
-    M5.Lcd.printf(buf); // Echo back
+    putc(c, stdout); // Echo back
+    fflush(stdout);
   }
   return c;
 }
