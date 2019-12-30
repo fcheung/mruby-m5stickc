@@ -41,6 +41,7 @@ MRuby::CrossBuild.new('esp32') do |conf|
 
     cc.defines << %w(ESP_PLATFORM)
     cc.defines << %w(ESP32)
+    cc.defines << %w(M5STICKC)
   end
 
   conf.cxx do |cxx|
