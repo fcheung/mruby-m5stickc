@@ -1,1 +1,5 @@
-puts 'Hello world'
+LRUG.run
+
+
+
+
