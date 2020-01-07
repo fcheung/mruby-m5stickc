@@ -1,1 +1,1 @@
-puts 'Hello world'
+LCD.print 'Hello world'
