@@ -1,7 +1,7 @@
 # m5stickc-mruby
 
 Example application for running mruby on M5StickC. This is pretty much the same as https://github.com/mimaki/M5Stack-mruby but running against the [M5StickC](https://github.com/m5stack/M5StickC)
-library instead of [M5Stack](https://github.com/m5stack/M5Stack). These libraries are very similar, to the extent that many of the same mrbgems can be used
+library instead of [M5Stack](https://github.com/m5stack/M5Stack). These libraries are very similar, to the extent that many of the same mrbgems can be used with minor or no modifiications
 
 This uses submodules for mruby, arduino-esp32  and M5StickC libraries - either use `git clone --recursive` or 
 
@@ -26,3 +26,7 @@ main/main.rb is run when the device starts up
 # IO
 
 by default stderr go to the serial port (viewable with `make monitor`) and stdout goes to the buildin screen. This is provided by the mruby-stdio / mruby-stdio-m5stick gems
+
+# MIRB
+
+You can use https://github.com/fcheung/mruby-mirb-server together with https://github.com/fcheung/mruby-bin-mirb-hostbased for a mirb shell which displays on the host device (your computer) but executes on the device

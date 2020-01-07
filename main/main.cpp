@@ -18,10 +18,10 @@
 extern "C" int mirb(mrb_state*);
 
 static mrb_value
-run_app_mrb(mrb_state *mrb, mrbc_context *context)
+run_app_mrb(mrb_state *mrb)
 {
   mrb_value val = mrb_nil_value();
-  val = mrb_load_irep_cxt(mrb, mrb_program, context);
+  val = mrb_load_irep_buf(mrb, mrb_program, sizeof(mrb_program));
 
   return val;
 }
@@ -29,7 +29,6 @@ run_app_mrb(mrb_state *mrb, mrbc_context *context)
 void mrubyTask(void *pvParameters)
 {
   mrb_state *mrb = NULL;
-  mrbc_context *context = NULL;
   mrb_value val;
   int ai=0;
 
@@ -43,11 +42,10 @@ void mrubyTask(void *pvParameters)
     goto ERROR;
   }
 
-  context = mrbc_context_new(mrb);
   ai = mrb_gc_arena_save(mrb);
 
   if (M5.BtnA.isReleased()) {
-    val = run_app_mrb(mrb, context);
+    val = run_app_mrb(mrb);
     if (mrb->exc) {
       printf("mrb exception\n");
       val = mrb_funcall(mrb, mrb_obj_value(mrb->exc), "inspect", 0);
@@ -65,11 +63,7 @@ void mrubyTask(void *pvParameters)
       M5.lcd.printf("%s\n", mrb_str_to_cstr(mrb, val));
     }
   }
-
-  /* Enter interactive mode */
-  mirb(mrb);
   mrb_gc_arena_restore(mrb, ai);
-  mrbc_context_free(mrb, context);
 
   mrb_close(mrb);
 

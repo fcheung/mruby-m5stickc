@@ -59,12 +59,12 @@ MRuby::CrossBuild.new('esp32') do |conf|
 
   conf.gem :core => "mruby-print"
   conf.gem :core => "mruby-compiler"
-  conf.gem :core => "mruby-enumerator"
 
   conf.gem :git => 'https://github.com/mimaki/mruby-stdio'
   conf.gem :git => "https://github.com/fcheung/mruby-stdio-m5stick.git"
   conf.gem :git => 'https://github.com/fcheung/mruby-lcd-m5stack.git'
   conf.gem :git => 'https://github.com/fcheung/mruby-m5stack-button-watcher.git'
 
+  conf.gem :path => '../../../../mruby-mirb-server'
   conf.gem :path => '../../../../mruby-lrug'
 end
