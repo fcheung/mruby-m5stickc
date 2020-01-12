@@ -16,11 +16,13 @@ class Menu
     result = nil
     while true
       render
-      result = @choices.values[get_next_choice].call
+      choice = @choices.values[get_next_choice]
+      reset_screen
+      result=choice.call
       if result == :wait
         get_next_choice
-        reset_screen
       end
+      reset_screen
       break if result == :stop
     end
   end
