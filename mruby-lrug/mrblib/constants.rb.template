@@ -1,4 +1,6 @@
+#rename me to constants.rb to use
 WIFI_SSID=''
 WIFI_PASSWORD=''
 TWILIO_USER=''
 TWILIO_PASSWORD=''
+TWILIO_APP_ID=''
