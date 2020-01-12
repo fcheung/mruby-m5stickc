@@ -76,5 +76,5 @@ ERROR:
 extern "C" void app_main()
 {
   initArduino();
-  xTaskCreatePinnedToCore(mrubyTask, "mrubyTask", 8192, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
+  xTaskCreatePinnedToCore(mrubyTask, "mrubyTask", 32768, NULL, 1, NULL, ARDUINO_RUNNING_CORE);
 }
