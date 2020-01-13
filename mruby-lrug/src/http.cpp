@@ -149,6 +149,15 @@ static mrb_value mrb_wifi_connected_p(mrb_state *mrb, mrb_value self){
 }
 
 
+static mrb_value mrb_pin_write(mrb_state *mrb, mrb_value self){
+  mrb_int pin;
+  mrb_bool value;
+  mrb_get_args(mrb, "ib", &pin, &value);
+  pinMode(pin, OUTPUT);
+  digitalWrite(pin, value ? HIGH : LOW);
+
+  return mrb_nil_value();
+}
 
 
 void
@@ -157,6 +166,9 @@ mrb_mruby_lrug_gem_init(mrb_state *mrb)
   struct RClass *http  = mrb_define_class(mrb, "HTTP",  mrb->object_class);
   struct RClass *wifi  = mrb_define_class(mrb, "Wifi",  mrb->object_class);
 
+  struct RClass *pin  = mrb_define_class(mrb, "Pin",  mrb->object_class);
+
+
   mrb_define_method(mrb, http, "initialize", mrb_http_init, MRB_ARGS_NONE());
   mrb_define_method(mrb, http, "authorize", mrb_http_set_auth, MRB_ARGS_REQ(2));
   mrb_define_method(mrb, http, "_get", mrb_http_get,  MRB_ARGS_REQ(2));
@@ -164,6 +176,9 @@ mrb_mruby_lrug_gem_init(mrb_state *mrb)
 
   mrb_define_class_method(mrb, wifi, "connect", mrb_wifi_connect,  MRB_ARGS_REQ(2));
   mrb_define_class_method(mrb, wifi, "connected?", mrb_wifi_connected_p,  MRB_ARGS_REQ(2));
+
+  mrb_define_class_method(mrb, pin, "write", mrb_pin_write,  MRB_ARGS_REQ(2));
+
 }
 
 void
